@@ -7,7 +7,7 @@ app.use(cors());
 app.use(express.json());
 
 app.get('/', (req, res) => {
-    res.send(`<h1  style="text-align: center; margin-top:100px;  font-weight: 900; font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif; color: blue">Welcome To Fantasy Kingdom Backend Server</h1>`)
+    res.send(`<h1  style="text-align: center; margin-top:100px;  font-weight: 900; color: blue">Welcome To Fantasy Kingdom Backend Server</h1>`)
 })
 
 
