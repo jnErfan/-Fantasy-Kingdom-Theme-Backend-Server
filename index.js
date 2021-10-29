@@ -17,9 +17,10 @@ const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology:
 client.connect(err => {
     const database = client.db('fantasyData');
     const ridesCollection = database.collection('ridesPackage');
- app.get('/rides' , async (req,res)=>{
-     res.send('ALl Ok')
- })
+    app.get('/rides' , async (req,res)=>{
+        const ridePackages = await ridesCollection.find({}).toArray();
+        res.send(ridePackages)
+    })
 //   client.close();
 });
 
