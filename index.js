@@ -3,6 +3,7 @@ const app = express();
 const port = process.env.PORT || 5000;
 const cors = require('cors');
 const { MongoClient } = require("mongodb");
+const ObjectId = require("mongodb").ObjectId;
 require('dotenv').config()
 
 app.use(cors());
@@ -22,6 +23,15 @@ client.connect(err => {
             const ridePackagesHome = await ridesCollection.find({}).limit(9).toArray();
             res.send(ridePackagesHome);
     })
+
+
+    // Get Single Id Package 
+    app.get("/rides/:id", async (req, res) => {
+        const params = req.params.id;
+        const query = {_id:ObjectId(params)};
+        const result = await ridesCollection.find(query).toArray();
+        res.send(result);
+    }) 
 
     app.get('/rides' , async (req,res)=>{
         const ridePackages = await ridesCollection.find({}).toArray();
