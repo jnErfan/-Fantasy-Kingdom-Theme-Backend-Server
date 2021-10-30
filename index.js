@@ -48,7 +48,11 @@ client.connect(err => {
         res.send(result);
         console.log(result);
     })
-
+    app.get('/matchPackage/:email', async (req, res) => {
+        const emailMatchPackage =  req.params.email;
+      const result = await customerCollection.find({email: emailMatchPackage}).toArray();
+      res.send(result)
+      });
 //   client.close();
 });
 
