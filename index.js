@@ -56,6 +56,20 @@ client.connect(err => {
         const ridePackages = await customerCollection.find({}).toArray();
         res.send(ridePackages)
     })
+
+    app.put("/orderStatus/:id", async (req,res)=> {
+        const params = req.params.id;
+        const updateId = {_id:ObjectId(params)}
+        const query = req.body;
+        const updateDoc = {
+            $set: {
+                status : query.status
+            },
+          };
+          const result = await customerCollection.updateOne(updateId, updateDoc);
+          res.json(result)
+    })
+
     app.get('/matchPackage/:email', async (req, res) => {
         const emailMatchPackage =  req.params.email;
       const result = await customerCollection.find({email: emailMatchPackage}).toArray();
