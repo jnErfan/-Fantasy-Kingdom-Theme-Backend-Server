@@ -63,7 +63,8 @@ client.connect(err => {
         const query = req.body;
         const updateDoc = {
             $set: {
-                status : query.status
+                status : query.status,
+                rejectReason : query.rejectReason
             },
           };
           const result = await customerCollection.updateOne(updateId, updateDoc);
