@@ -48,6 +48,10 @@ client.connect(err => {
         res.send(result);
         console.log(result);
     })
+    app.get('/allOrders' , async (req,res)=>{
+        const ridePackages = await customerCollection.find({}).toArray();
+        res.send(ridePackages)
+    })
     app.get('/matchPackage/:email', async (req, res) => {
         const emailMatchPackage =  req.params.email;
       const result = await customerCollection.find({email: emailMatchPackage}).toArray();
