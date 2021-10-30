@@ -38,7 +38,12 @@ client.connect(err => {
         const ridePackages = await ridesCollection.find({}).toArray();
         res.send(ridePackages)
     })
-
+    app.post("/rides", async (req,res)=>{
+        const package = req.body;
+        const result = await ridesCollection.insertOne(package);
+        res.send(result);
+        console.log(result);
+    })
 
 
     // Buyer Information Post 
@@ -46,7 +51,6 @@ client.connect(err => {
         const info = req.body;
         const result = await customerCollection.insertOne(info);
         res.send(result);
-        console.log(result);
     })
     app.get('/allOrders' , async (req,res)=>{
         const ridePackages = await customerCollection.find({}).toArray();
